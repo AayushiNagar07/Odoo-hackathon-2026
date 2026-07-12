@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, login_required, current_user
-from models import db, User
+# Combined imports from models
+from models import db, User, Vehicle 
 
 app = Flask(__name__)
 app.secret_key = 'transitops_secret_key'
@@ -28,13 +29,19 @@ def login():
         if user:
             login_user(user, remember=remember)
             return redirect(url_for('dashboard'))
-        flash('Invalid credentials. Account locked after 5 failed attempts.')
+        flash('Invalid credentials.')
     return render_template('login.html')
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return f"Welcome {current_user.email}! Role: {current_user.role}"
+    return f"Welcome {current_user.email}! Role: {current_user.role} <br> <a href='/registry'>View Vehicle Registry</a>"
+
+@app.route('/registry')
+@login_required
+def registry():
+    all_vehicles = Vehicle.query.all()
+    return render_template('registry.html', vehicles=all_vehicles)
 
 @app.route('/forgot-password')
 def forgot_password():
@@ -43,8 +50,16 @@ def forgot_password():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        
         # Seed test user
         if not User.query.filter_by(email="admin@transitops.in").first():
             db.session.add(User(email="admin@transitops.in", password="password123", role="Fleet Manager"))
             db.session.commit()
+            
+        # Seed test vehicles
+        if not Vehicle.query.first():
+            db.session.add(Vehicle(license_plate="KA-01-HC-1234", make="Ashok Leyland Dost", status="Available"))
+            db.session.add(Vehicle(license_plate="MH-02-EE-5678", make="Tata Intra V30", status="On-Trip"))
+            db.session.commit()
+
     app.run(debug=True)
