@@ -102,6 +102,18 @@ def initialize_database():
             )
 
         connection.commit()
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS trips (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                vehicle TEXT NOT NULL,
+                driver TEXT NOT NULL,
+                source TEXT NOT NULL,
+                destination TEXT NOT NULL,
+                status TEXT DEFAULT 'Dispatched'
+            )
+            """
+        )
 
 
 initialize_database()
@@ -206,6 +218,25 @@ def expenses_api():
 
     return jsonify({"success": True, "message": "Expense added successfully."})
 
+@app.route('/api/trips', methods=['GET', 'POST'])
+def trips_api():
+    if request.method == 'GET':
+        with get_db_connection() as connection:
+            rows = connection.execute("SELECT * FROM trips ORDER BY id DESC").fetchall()
+        return jsonify([dict(row) for row in rows])
+
+    data = request.get_json()
+    with get_db_connection() as connection:
+        connection.execute(
+            "INSERT INTO trips (vehicle, driver, source, destination) VALUES (?, ?, ?, ?)",
+            (data['vehicle'], data['driver'], data['source'], data['destination'])
+        )
+        connection.commit()
+    return jsonify({"success": True})
+
+@app.route('/trips')
+def trips_page():
+    return render_template("trips.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
