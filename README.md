@@ -1,6 +1,4 @@
-Here is your updated `README.md`. I have added the **Vehicle Registry** to the features, updated the project structure to reflect the registry, and corrected the markdown formatting for your setup instructions.
 
-```markdown
 # TransitOps 🚛
 
 **Smart Transport Operations Platform**
