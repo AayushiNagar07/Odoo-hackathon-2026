@@ -16,14 +16,14 @@ TransitOps is an all-in-one management system built to streamline fleet operatio
 ### 🎥 Solution Walkthrough
 
 *Watch the TransitOps workflow in action.*
-<video src="https://github.com/AayushiNagar07/Odoo-hackathon-2026/blob/main/images/video.mp4?raw=true" controls="controls" style="max-width: 730px;">
+<video src="https://github.com/AayushiNagar07/Odoo-hackathon-2026/blob/main/images/video%20solution.mp4">
 </video>
 
 ### 🖼️ App Gallery
 
 | Dashboard | Dispatch | Expenses |
 | :--- | :--- | :--- |
-| ![Dashboard](images/Screenshot_2026-07-12_180814.png) | ![Dispatch](images/Screenshot_2026-07-12_180923.png) | ![Expenses](images/Screenshot_2026-07-12_180836.png) |
+| ![Dashboard](images/Screenshot 2026-07-12 152422.png) | ![Dispatch](images/Screenshot 2026-07-12 180836.png") | ![Expenses](images/Screenshot 2026-07-12 180859.png) |
 
 ---
 
