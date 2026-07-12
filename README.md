@@ -18,7 +18,7 @@ TransitOps is an all-in-one management system built to streamline fleet operatio
 
 1. **Clone & Setup:**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/AayushiNagar07/Odoo-hackathon-2026
    cd transitops
 
 
