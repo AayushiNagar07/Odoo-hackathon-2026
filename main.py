@@ -102,11 +102,31 @@ def initialize_database():
             CREATE TABLE IF NOT EXISTS fleet_drivers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 driver_name TEXT NOT NULL UNIQUE,
-                status TEXT NOT NULL DEFAULT 'on_duty',
+                license_no TEXT,
+                category TEXT,
+                expiry TEXT,
+                contact TEXT,
+                trip_completion TEXT DEFAULT '0%',
+                safety_status TEXT DEFAULT 'Available',
+                status TEXT NOT NULL DEFAULT 'available',
                 shift TEXT NOT NULL DEFAULT 'day'
             )
             """
         )
+
+        existing_columns = [row[1] for row in connection.execute("PRAGMA table_info(fleet_drivers)").fetchall()]
+        missing_columns = [
+            ("license_no", "TEXT"),
+            ("category", "TEXT"),
+            ("expiry", "TEXT"),
+            ("contact", "TEXT"),
+            ("trip_completion", "TEXT"),
+            ("safety_status", "TEXT"),
+        ]
+        for name, column_type in missing_columns:
+            if name not in existing_columns:
+                connection.execute(f"ALTER TABLE fleet_drivers ADD COLUMN {name} {column_type}")
+
         connection.commit()
 
         fuel_count = connection.execute("SELECT COUNT(*) AS count FROM fuel_logs").fetchone()["count"]
@@ -165,13 +185,12 @@ def initialize_database():
         driver_count = connection.execute("SELECT COUNT(*) AS count FROM fleet_drivers").fetchone()["count"]
         if driver_count == 0:
             connection.executemany(
-                "INSERT INTO fleet_drivers (driver_name, status, shift) VALUES (?, ?, ?)",
+                "INSERT INTO fleet_drivers (driver_name, status, shift, license_no, category, expiry, contact, trip_completion, safety_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
-                    ("Alex", "on_duty", "day"),
-                    ("John", "on_duty", "day"),
-                    ("Priya", "on_duty", "night"),
-                    ("Mina", "off_duty", "day"),
-                    ("Dinesh", "on_duty", "night"),
+                    ("Alex", "available", "day", "DL-88213", "LMV", "12/2028", "98765xxxxx", "96%", "Available"),
+                    ("John", "suspended", "day", "DL-44120", "HMV", "03/2025", "98320xxxxx", "81%", "Suspended"),
+                    ("Priya", "on_trip", "night", "DL-77031", "LMV", "08/2024", "99110xxxxx", "99%", "On Trip"),
+                    ("Suresh", "available", "day", "DL-00045", "HMV", "01/2027", "97440xxxxx", "88%", "Available"),
                 ],
             )
 
@@ -218,6 +237,11 @@ def login():
         return jsonify({"success": True, "redirect": "/dashboard"})
 
     return jsonify({"success": False, "message": "Invalid email or password for the selected role."}), 401
+
+
+@app.route('/drivers')
+def drivers_page():
+    return render_template("drivers.html")
 
 
 @app.route('/expenses')
@@ -356,6 +380,57 @@ def expenses_api():
         connection.commit()
 
     return jsonify({"success": True, "message": "Expense added successfully."})
+
+
+@app.route('/api/drivers', methods=['GET', 'POST'])
+def drivers_api():
+    if request.method == 'GET':
+        search_value = (request.args.get('search') or '').strip().lower()
+        status_filter = (request.args.get('status') or 'all').strip().lower()
+
+        query = "SELECT driver_name, license_no, category, expiry, contact, trip_completion, safety_status, status FROM fleet_drivers"
+        filters = []
+        params = []
+
+        if status_filter != 'all':
+            filters.append('LOWER(status) = ?')
+            params.append(status_filter)
+
+        if search_value:
+            search_term = f"%{search_value}%"
+            filters.append("(LOWER(driver_name) LIKE ? OR LOWER(license_no) LIKE ? OR LOWER(category) LIKE ? OR LOWER(contact) LIKE ?)")
+            params.extend([search_term, search_term, search_term, search_term])
+
+        if filters:
+            query += " WHERE " + " AND ".join(filters)
+
+        query += " ORDER BY id DESC"
+
+        with get_db_connection() as connection:
+            rows = connection.execute(query, params).fetchall()
+        return jsonify([dict(row) for row in rows])
+
+    payload = request.get_json(silent=True) or {}
+    driver_name = (payload.get('driver_name') or '').strip()
+    license_no = (payload.get('license_no') or '').strip()
+    category = (payload.get('category') or '').strip()
+    expiry = (payload.get('expiry') or '').strip()
+    contact = (payload.get('contact') or '').strip()
+    trip_completion = (payload.get('trip_completion') or '0%').strip()
+    safety_status = (payload.get('safety_status') or 'Available').strip()
+    status = (payload.get('status') or 'available').strip().lower()
+
+    if not driver_name or not license_no:
+        return jsonify({"success": False, "message": "Driver name and license number are required."}), 400
+
+    with get_db_connection() as connection:
+        connection.execute(
+            "INSERT INTO fleet_drivers (driver_name, license_no, category, expiry, contact, trip_completion, safety_status, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (driver_name, license_no, category, expiry, contact, trip_completion, safety_status, status),
+        )
+        connection.commit()
+
+    return jsonify({"success": True, "message": "Driver added successfully."})
 
 
 @app.route('/api/trips', methods=['GET', 'POST'])
