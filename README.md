@@ -74,6 +74,5 @@ python main.py
 *Built for the 2026 Odoo Hackathon.*
 
 
-3. **Consistency:** Ensure the filenames in the Markdown above match the exact names of your uploaded screenshots.
 
-This layout is much more visual and will immediately capture the attention of the evaluators!
+
