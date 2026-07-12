@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="card shadow-sm w-100" style="max-width: 420px;">
+            <div class="card-body p-4">
+                <h3 class="card-title mb-4 text-center">Login</h3>
+                <form id="loginForm" method="post" action="/login">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="userRole" class="form-label">Login as</label>
+                        <select class="form-select" id="userRole" name="role">
+                            <option value="fleet_manager" selected>Fleet Manager</option>
+                            <option value="dispatcher">Dispatcher</option>
+                            <option value="safety_officer">Safety Officer</option>
+                            <option value="financial_analyst">Financial Analyst</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="text-decoration-none">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            if (!loginForm) {
+                return;
+            }
+
+            loginForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json().catch(() => ({ message: 'Login failed' }));
+                    if (!response.ok) {
+                        alert(data.message || 'Login failed.');
+                        return;
+                    }
+
+                    window.location.href = data.redirect || '/dashboard';
+                } catch (error) {
+                    console.error('Login request failed:', error);
+                    alert('Unable to send login request. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

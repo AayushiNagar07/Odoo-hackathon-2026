@@ -1,0 +1,99 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --surface: #ffffff;
+}
+
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    color: #111827;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+#sidebar {
+    width: 260px;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.list-group-item {
+    border: 0;
+    padding: 0.2rem 0;
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: #374151;
+    display: block;
+    padding: 0.7rem 0.85rem;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-group-item a:hover {
+    background: #f3f4f6;
+    color: var(--primary);
+}
+
+.custom-active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+#main-content {
+    max-width: 1400px;
+}
+
+.card {
+    border: 0;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--border);
+}
+
+.table th,
+.table td {
+    padding: 0.95rem 1rem;
+    vertical-align: middle;
+}
+
+.table thead th {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.btn {
+    border-radius: 999px;
+    padding: 0.6rem 1rem;
+}
+
+.avatar-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+@media (max-width: 992px) {
+    #sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+}
