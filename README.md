@@ -1,80 +1,177 @@
-# TransitOps 🚛
+# 🚛 TransitOps – Smart Transport Operations Platform
 
-## Smart Transport Operations Platform
-
-TransitOps is an all-in-one management system built to streamline fleet operations, trip logistics, and maintenance tracking with secure, role-based access.
-
-### 🚀 Key Features
-
-* **Role-Based Access (RBAC):** Customized dashboards for Fleet Managers, Dispatchers, Safety Officers, and Financial Analysts.
-* **Vehicle Registry:** Complete management system to add, track, and monitor fleet status in real-time.
-* **Smart Dispatching:** Real-time trip tracking and capacity management.
-* **Maintenance & Expenses:** Automated vehicle service logs and fuel cost tracking.
+TransitOps is a comprehensive fleet and transport management platform designed to optimize logistics operations, vehicle tracking, dispatch management, maintenance scheduling, and expense monitoring through secure role-based access control.
 
 ---
 
-### 🎥 Solution Walkthrough
+## 🌟 Overview
 
-*Watch the TransitOps workflow in action.*
-<video src="https://github.com/AayushiNagar07/Odoo-hackathon-2026/blob/main/images/video%20solution.mp4">
-</video>
-
-### 🖼️ App Gallery
-
-| Dashboard | Dispatch | Expenses |
-| :--- | :--- | :--- |
-| ![Dashboard](images/Screenshot 2026-07-12 152422.png) | ![Dispatch](images/Screenshot 2026-07-12 180836.png") | ![Expenses](images/Screenshot 2026-07-12 180859.png) |
+Managing transportation operations efficiently requires visibility, coordination, and data-driven decision-making. TransitOps brings all critical transport workflows into a single platform, enabling organizations to streamline fleet operations, reduce operational costs, and improve productivity.
 
 ---
 
-### 🛠 Quick Start
+## ✨ Key Features
 
-1. **Clone & Setup:**
-```bash
-git clone https://github.com/AayushiNagar07/Odoo-hackathon-2026
-cd Odoo-hackathon-2026
+### 🔐 Role-Based Access Control (RBAC)
 
+Dedicated dashboards and permissions for different operational roles:
+
+* Fleet Managers
+* Dispatchers
+* Safety Officers
+* Financial Analysts
+
+### 🚚 Vehicle Registry Management
+
+* Add and manage fleet vehicles
+* Monitor vehicle availability and status
+* Maintain centralized fleet records
+
+### 📍 Smart Dispatching System
+
+* Create and manage trips
+* Track vehicle assignments
+* Monitor transport capacity and operations
+
+### 🛠 Maintenance Management
+
+* Track vehicle servicing schedules
+* Maintain service history records
+* Reduce downtime through preventive maintenance
+
+### ⛽ Fuel & Expense Tracking
+
+* Record fuel consumption
+* Monitor operational expenses
+* Generate insights for cost optimization
+
+---
+
+## 🎥 Solution Walkthrough
+
+Watch the complete TransitOps workflow in action:
+
+```html
+<video src="images/video solution.mp4" controls></video>
 ```
 
+---
 
-2. **Configure Environment:**
+## 📸 Application Screenshots
+
+### Dashboard
+
+![Dashboard](images/Screenshot%202026-07-12%20152422.png)
+
+### Dispatch Management
+
+![Dispatch](images/Screenshot%202026-07-12%20180836.png)
+
+### Expense Tracking
+
+![Expenses](images/Screenshot%202026-07-12%20180859.png)
+
+---
+
+## 🛠 Tech Stack
+
+* Python
+* Flask
+* HTML5
+* CSS3
+* JavaScript
+
+---
+
+## ⚡ Quick Start
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/AayushiNagar07/Odoo-hackathon-2026.git
+cd Odoo-hackathon-2026
+```
+
+### 2. Create a Virtual Environment
+
 ```bash
 python -m venv .venv
-# Windows: .venv\Scripts\Activate.ps1
-# macOS/Linux: source .venv/bin/activate
-pip install flask
-
 ```
 
+Activate the environment:
 
-3. **Launch:**
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+**macOS/Linux**
+
+```bash
+source .venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install flask
+```
+
+### 4. Run the Application
+
 ```bash
 python main.py
-
 ```
 
+### 5. Open in Browser
 
-*Visit: [http://127.0.0.1:5000/*](https://www.google.com/search?q=http://127.0.0.1:5000/)
+```text
+http://127.0.0.1:5000
+```
 
 ---
 
-### 📂 Project Structure
+## 📁 Project Structure
 
-* **main.py** — The core engine; handles application routes and business logic.
-* **templates/** — HTML files for the user interface.
-* **static/** — CSS and JavaScript for styling and interactivity.
+```text
+TransitOps/
+│
+├── main.py               # Application routes and business logic
+├── templates/            # HTML templates
+├── static/               # CSS, JavaScript, images
+├── images/               # Project screenshots and demo assets
+└── README.md
+```
 
-### 🔐 Roles & Access
+---
 
-| Role | Primary Responsibility |
-| --- | --- |
-| **Fleet Manager** | Fleet Registry & Maintenance |
-| **Dispatcher** | Trips & Live Dashboard |
-| **Safety Officer** | Drivers & Compliance |
-| **Financial Analyst** | Fuel, Expenses & Analytics |
+## 👥 User Roles
 
-*Built for the 2026 Odoo Hackathon.*
+| Role              | Responsibilities                                 |
+| ----------------- | ------------------------------------------------ |
+| Fleet Manager     | Fleet registration and maintenance management    |
+| Dispatcher        | Trip scheduling and dispatch operations          |
+| Safety Officer    | Driver management and compliance monitoring      |
+| Financial Analyst | Fuel tracking, expense management, and reporting |
 
+---
 
+## 🎯 Use Cases
 
+* Fleet Management
+* Logistics Operations
+* Transport Companies
+* Vehicle Maintenance Tracking
+* Fuel & Expense Monitoring
+* Dispatch Coordination
 
+---
+
+## 🏆 Hackathon Project
+
+Developed as part of the **Odoo Hackathon 2026**, showcasing a scalable and user-friendly approach to modern transport operations management.
+
+---
+
+### Made with ❤️ 
