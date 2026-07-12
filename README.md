@@ -77,11 +77,4 @@ Open your browser and navigate to `http://127.0.0.1:5000/login`
 ---
 
 *Built for the 2026 Odoo Hackathon.*
-
-```
-
-
-
-Does this version look perfect for your repository?
-
 ```
