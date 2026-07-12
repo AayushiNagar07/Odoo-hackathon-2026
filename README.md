@@ -1,12 +1,17 @@
 # 🚛 TransitOps – Smart Transport Operations Platform
 
-TransitOps is a comprehensive fleet and transport management platform designed to optimize logistics operations, vehicle tracking, dispatch management, maintenance scheduling, and expense monitoring through secure role-based access control.
+[![Watch Demo](https://img.shields.io/badge/▶️_Watch_Demo-YouTube-red?style=for-the-badge\&logo=youtube)](https://youtu.be/4d1o395FcQA)
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge\&logo=python)
+![Flask](https://img.shields.io/badge/Flask-Web_App-black?style=for-the-badge\&logo=flask)
+![Hackathon](https://img.shields.io/badge/Odoo-Hackathon_2026-purple?style=for-the-badge)
+
+TransitOps is a comprehensive fleet and transport management platform designed to streamline logistics operations, optimize fleet utilization, and simplify vehicle maintenance and expense tracking through secure role-based access control.
 
 ---
 
 ## 🌟 Overview
 
-Managing transportation operations efficiently requires visibility, coordination, and data-driven decision-making. TransitOps brings all critical transport workflows into a single platform, enabling organizations to streamline fleet operations, reduce operational costs, and improve productivity.
+Managing transportation operations requires real-time visibility, efficient coordination, and data-driven decision-making. TransitOps centralizes fleet management, dispatch operations, maintenance scheduling, and expense monitoring into a single platform, helping organizations improve operational efficiency and reduce costs.
 
 ---
 
@@ -14,7 +19,7 @@ Managing transportation operations efficiently requires visibility, coordination
 
 ### 🔐 Role-Based Access Control (RBAC)
 
-Dedicated dashboards and permissions for different operational roles:
+Dedicated dashboards and permissions tailored for:
 
 * Fleet Managers
 * Dispatchers
@@ -31,19 +36,19 @@ Dedicated dashboards and permissions for different operational roles:
 
 * Create and manage trips
 * Track vehicle assignments
-* Monitor transport capacity and operations
+* Monitor fleet utilization and capacity
 
 ### 🛠 Maintenance Management
 
-* Track vehicle servicing schedules
-* Maintain service history records
-* Reduce downtime through preventive maintenance
+* Schedule preventive maintenance
+* Track vehicle servicing history
+* Reduce downtime through timely maintenance
 
 ### ⛽ Fuel & Expense Tracking
 
 * Record fuel consumption
-* Monitor operational expenses
-* Generate insights for cost optimization
+* Track operational expenses
+* Generate cost-monitoring insights
 
 ---
 
@@ -51,9 +56,9 @@ Dedicated dashboards and permissions for different operational roles:
 
 Watch the complete TransitOps workflow in action:
 
-```html
-<video src="images/video solution.mp4" controls></video>
-```
+[![Watch TransitOps Demo](https://img.youtube.com/vi/4d1o395FcQA/hqdefault.jpg)](https://youtu.be/4d1o395FcQA)
+
+▶️ **Click the thumbnail above to watch the complete demo on YouTube.**
 
 ---
 
@@ -139,8 +144,8 @@ TransitOps/
 │
 ├── main.py               # Application routes and business logic
 ├── templates/            # HTML templates
-├── static/               # CSS, JavaScript, images
-├── images/               # Project screenshots and demo assets
+├── static/               # CSS, JavaScript, and assets
+├── images/               # Screenshots and demo resources
 └── README.md
 ```
 
@@ -161,16 +166,27 @@ TransitOps/
 
 * Fleet Management
 * Logistics Operations
-* Transport Companies
+* Transportation Companies
 * Vehicle Maintenance Tracking
 * Fuel & Expense Monitoring
 * Dispatch Coordination
 
 ---
 
-## 🏆 Hackathon Project
+## 🚀 Future Enhancements
 
-Developed as part of the **Odoo Hackathon 2026**, showcasing a scalable and user-friendly approach to modern transport operations management.
+* Real-time GPS tracking integration
+* Route optimization and analytics
+* Driver performance monitoring
+* Automated maintenance alerts
+* Advanced reporting dashboard
+* Mobile-responsive interface
+
+---
+
+## 🏆 Odoo Hackathon 2026
+
+Developed as part of **Odoo Hackathon 2026**, demonstrating how modern fleet operations can be managed through a centralized, user-friendly, and scalable platform.
 
 ---
 
